@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.DS_Store
+
+# Environment secrets — never commit these
+.env
+env.txt
+
+# Temporary and build info files
+*.tmp
+*.tsbuildinfo

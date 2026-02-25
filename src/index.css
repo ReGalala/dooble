@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background: Slightly deeper warm #F2EBE3 to pop white cards */
+    --background: 35 30% 92%;
+    /* Foreground: #2B2B2B */
+    --foreground: 0 0% 17%;
+
+    /* Card: #FFFFFF */
+    --card: 0 0% 100%;
+    /* Card Foreground: #2B2B2B */
+    --card-foreground: 0 0% 17%;
+
+    /* Stronger shadow for raised cards */
+    --shadow-card: 0 8px 24px -4px rgba(43, 43, 43, 0.08), 0 4px 12px -2px rgba(43, 43, 43, 0.04);
+    --shadow-hover: 0 12px 32px -4px rgba(43, 43, 43, 0.12), 0 8px 16px -4px rgba(43, 43, 43, 0.06);
+
+    /* Popover: #FFFFFF */
+    --popover: 0 0% 100%;
+    /* Popover Foreground: #2B2B2B */
+    --popover-foreground: 0 0% 17%;
+
+    /* Primary: #D97A3A (Warm Orange) */
+    --primary: 24 66% 54%;
+    /* Primary Foreground: #FFFFFF */
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: #EADFD6 (Slightly darker for inputs) */
+    --secondary: 30 20% 88%;
+    /* Secondary Foreground: #6B625A */
+    --secondary-foreground: 28 9% 39%;
+
+    /* Muted: #EADFD6 */
+    --muted: 30 20% 88%;
+    /* Muted Foreground: #6B625A */
+    --muted-foreground: 28 9% 39%;
+
+    /* Accent: #FFF9F2 (Soft warm highlight) */
+    --accent: 35 60% 97%;
+    /* Accent Foreground: #D97A3A */
+    --accent-foreground: 24 66% 54%;
+
+    /* Destructive: Soft Red */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Border: #E0D3C6 for better contrast against background */
+    --border: 30 20% 82%;
+    /* Input: #FFFFFF */
+    --input: 30 20% 82%;
+    /* Using border color for input border, or white bg */
+    /* Ring: #D97A3A */
+    --ring: 24 66% 54%;
+
+    --radius: 1rem;
+    /* 16px */
+
+    /* Sidebar - keeping consistent with main theme */
+    --sidebar-background: 35 30% 92%;
+    --sidebar-foreground: 0 0% 17%;
+    --sidebar-primary: 24 66% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 20% 88%;
+    --sidebar-accent-foreground: 28 9% 39%;
+    --sidebar-border: 30 20% 82%;
+    --sidebar-ring: 24 66% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+/* Ensure Leaflet markers are visible above tiles */
+.leaflet-marker-icon {
+  overflow: visible !important;
+}
+
+.leaflet-marker-pane {
+  z-index: 600 !important;
+}
+
+/* Custom tooltip for map pins */
+.map-activity-tooltip {
+  background: hsl(0 0% 100%) !important;
+  color: hsl(0 0% 17%) !important;
+  border: 1px solid hsl(30 20% 82%) !important;
+  border-radius: 16px !important;
+  padding: 14px 16px !important;
+  padding-top: 14px !important;
+  box-shadow: 0 8px 24px -4px rgba(43, 43, 43, 0.12), 0 4px 12px -2px rgba(43, 43, 43, 0.08) !important;
+  font-family: 'Nunito', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.map-activity-tooltip::before {
+  border-top-color: hsl(0 0% 100%) !important;
+}
