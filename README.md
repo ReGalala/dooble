@@ -4,7 +4,7 @@
 
 Dooble is a web app that connects visitors with local activities and helps activity organizers manage their offerings. Visitors can explore activities on an interactive map, view details, and get tickets — while organizers can create, edit, and track their activities through a dedicated dashboard.
 
-This project was initially bootstrapped with **[Lovable](https://lovable.dev)** and later developed further with **[Antigravity](https://antigravity.dev)**.
+This project was developed with **[Antigravity](https://antigravity.dev)**.
 
 ---
 
