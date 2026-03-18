@@ -8,6 +8,7 @@ import { CATEGORY_COLORS } from "@/data/activities";
 import { useActivityStore } from "@/contexts/ActivityStoreContext";
 import { getTimeLeft } from "@/lib/timeLeft";
 import MapFilterBar, { MapFilters, DEFAULT_FILTERS, applyFilters, useUserLocation } from "@/components/MapFilterBar";
+import { getImageUrl } from "@/lib/utils";
 
 // Vanilla Leaflet map hook (Leaflet loaded from index.html)
 function useLeafletMap(containerRef: React.RefObject<HTMLDivElement | null>) {
@@ -135,7 +136,7 @@ const MapPage = () => {
 
       const tooltipContent = `
         <div style="font-family:'Space Grotesk',sans-serif;min-width:240px;max-width:280px;overflow:hidden;">
-          ${a.image ? `<div style="height:140px;width:100%;background-image:url('${a.image}');background-size:cover;background-position:center;border-radius:12px 12px 0 0;margin:-14px -16px 12px -16px;"></div>` : ""}
+          ${a.image ? `<div style="height:140px;width:100%;background-image:url('${getImageUrl(a.image)}');background-size:cover;background-position:center;border-radius:12px 12px 0 0;margin:-14px -16px 12px -16px;"></div>` : ""}
           <strong style="font-size:15px;display:block;margin-bottom:4px;line-height:1.2;">${a.lastMinute ? "🔥 " : ""}${a.name}</strong>
           <div style="font-size:12px;opacity:0.7;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.company}</div>
           <div style="display:flex;gap:12px;font-size:12px;opacity:0.8;font-weight:500;align-items:center;">
@@ -227,7 +228,7 @@ const MapPage = () => {
                     {/* Image Section - Top of Card */}
                     <div className="relative h-48 w-full shrink-0 overflow-hidden bg-gray-100">
                       {activity.image ? (
-                        <img src={activity.image} alt={activity.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <img src={getImageUrl(activity.image)} alt={activity.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                       ) : (
                         <div className="flex h-full w-full items-center justify-center text-muted-foreground/20">
                           <MapPin className="h-12 w-12" />

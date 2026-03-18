@@ -7,9 +7,11 @@ import { useTicketStore } from "@/contexts/TicketStoreContext";
 import { CATEGORY_COLORS } from "@/data/activities";
 import { ArrowLeft, MapPin, Clock, Star, Tag, Building2, Ticket, CalendarDays, ImageIcon, Minus, Plus, Timer, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { getTimeLeft } from "@/lib/timeLeft";
 import TopBarVisitor from "@/components/TopBarVisitor";
 import { api } from "@/lib/api";
+import { getImageUrl } from "@/lib/utils";
 
 const ActivityDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -91,11 +93,11 @@ const ActivityDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {/* Left — Images */}
             <div className="space-y-4">
-              <div className="aspect-[4/3] rounded-lg bg-white shadow-sm flex items-center justify-center border border-border/50 overflow-hidden relative group">
+              <div className="relative h-full w-full overflow-hidden rounded-2xl bg-secondary/30 group">
                 {activity.image ? (
-                  <img src={activity.image} alt={activity.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={getImageUrl(activity.image)} alt={activity.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 ) : (
-                  <div className="flex flex-col items-center gap-2 text-muted-foreground/50">
+                  <div className="flex h-full w-full items-center justify-center text-muted-foreground/20">
                     <ImageIcon className="h-16 w-16" />
                     <span className="text-sm font-medium">Activity photo</span>
                   </div>
@@ -103,11 +105,11 @@ const ActivityDetail = () => {
               </div>
               <div className="grid grid-cols-4 gap-3">
                 {galleryPlaceholders.map((_, i) => (
-                  <div key={i} className="aspect-square rounded-lg bg-white shadow-sm flex items-center justify-center border border-border/50 overflow-hidden">
+                  <div key={i} className="h-24 w-full rounded-xl overflow-hidden bg-secondary border border-border/50">
                     {activity.image ? (
-                      <img src={activity.image} alt="Gallery" className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity cursor-pointer" />
+                      <img src={getImageUrl(activity.image)} alt="Gallery" className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity cursor-pointer" />
                     ) : (
-                      <ImageIcon className="h-6 w-6 text-muted-foreground/30" />
+                      <div className="flex h-full w-full items-center justify-center"><ImageIcon className="h-5 w-5 opacity-20" /></div>
                     )}
                   </div>
                 ))}

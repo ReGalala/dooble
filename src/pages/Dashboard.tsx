@@ -4,6 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useActivityStore, isExpired } from "@/contexts/ActivityStoreContext";
 import { CATEGORY_COLORS } from "@/data/activities";
 import { LogOut, Plus, Pencil, ToggleLeft, ToggleRight, ImageIcon } from "lucide-react";
+import { getImageUrl } from "@/lib/utils";
 
 const DashboardPage = () => {
   const { user, logout } = useAuth();
@@ -63,7 +64,7 @@ const DashboardPage = () => {
                       {/* Activity Image Thumbnail */}
                       <div className="h-16 w-16 shrink-0 overflow-hidden rounded-md bg-muted/50 border border-border/50 flex items-center justify-center">
                         {a.image ? (
-                          <img src={a.image} alt={a.name} className="h-full w-full object-cover" />
+                          <img src={getImageUrl(a.image)} alt={a.name} className="h-full w-full object-cover" />
                         ) : (
                           <ImageIcon className="h-8 w-8 text-muted-foreground/30" />
                         )}

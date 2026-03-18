@@ -10,6 +10,7 @@ import { api } from "@/lib/api";
 import { ArrowLeft, MapPin, Upload, X, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import TopBarVisitor from "@/components/TopBarVisitor";
+import { getImageUrl } from "@/lib/utils";
 
 const CATEGORIES = ["Yard sale", "Meetup", "Sports", "Food", "Other"];
 
@@ -136,6 +137,7 @@ const AddActivity = () => {
                 startsAt: null,
                 source: "community",
                 isActive: true,
+                ratingCount: 0,
             });
 
             toast({ title: "Success!", description: "Your activity has been posted." });
@@ -290,7 +292,7 @@ const AddActivity = () => {
                                 <div className="flex items-center gap-4">
                                     {imagePreview ? (
                                         <div className="relative h-24 w-32 rounded-md overflow-hidden border border-border group">
-                                            <img src={imagePreview} alt="Preview" className="h-full w-full object-cover" />
+                                            <img src={getImageUrl(imagePreview)} alt="Preview" className="h-full w-full object-cover" />
                                             <button
                                                 type="button"
                                                 onClick={() => { setImageFile(null); setImagePreview(null); }}

@@ -15,7 +15,7 @@ import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { CalendarIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getImageUrl } from "@/lib/utils";
 import { useGeocode } from "@/hooks/use-geocode";
 
 const CreateActivity = () => {
@@ -99,6 +99,9 @@ const CreateActivity = () => {
       lastMinute: false,
       startsAt: null,
       image: image || undefined,
+      ratingCount: 0,
+      source: "company",
+      isActive: true,
     });
     setSubmitting(false);
 
@@ -188,7 +191,7 @@ const CreateActivity = () => {
                 <div className="space-y-3">
                   {image ? (
                     <div className="relative aspect-video w-full max-w-sm rounded-lg overflow-hidden border border-border group">
-                      <img src={image} alt="Preview" className="h-full w-full object-cover" />
+                      <img src={getImageUrl(image)} alt="Preview" className="h-full w-full object-cover" />
                       <button
                         type="button"
                         onClick={() => setImage("")}
