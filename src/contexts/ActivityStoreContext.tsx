@@ -93,7 +93,7 @@ export const ActivityStoreProvider: React.FC<{ children: React.ReactNode }> = ({
   const fetchActivities = useCallback(async () => {
     try {
       const data = await api.get('/activities');
-      setActivities(data); // Assuming API returns data in correct format
+      setActivities(data as any); // Assuming API returns data in correct format
     } catch (error) {
       console.error("Failed to fetch activities", error);
     } finally {
@@ -116,7 +116,7 @@ export const ActivityStoreProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 
   const getById = useCallback(
-    (id: string) => activities.find((a) => a.id === id),
+    (id: string) => activities.find((a) => String(a.id) === String(id)),
     [activities]
   );
 
@@ -141,14 +141,14 @@ export const ActivityStoreProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const toggleStatus = useCallback(async (id: string) => {
-    const activity = activities.find((a) => a.id === id);
+    const activity = activities.find((a) => String(a.id) === String(id));
     if (!activity) return;
     const newStatus = activity.status === "active" ? "inactive" : "active";
     await update(id, { status: newStatus });
   }, [activities, update]);
 
   const decrementTickets = useCallback(async (id: string, qty: number) => {
-    const activity = activities.find((a) => a.id === id);
+    const activity = activities.find((a) => String(a.id) === String(id));
     if (!activity) return;
     const newCount = Math.max(0, activity.ticketsRemaining - qty);
     await update(id, { ticketsRemaining: newCount });

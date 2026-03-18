@@ -45,7 +45,7 @@ export const TicketStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
     }
     try {
       const data = await api.get('/tickets');
-      setTickets(data);
+      setTickets(data as any);
     } catch (error) {
       console.error("Failed to fetch tickets", error);
     }
