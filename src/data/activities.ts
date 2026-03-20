@@ -81,7 +81,7 @@ export const SEED_ACTIVITIES: Activity[] = [
   { id: 20, name: "Botanical Garden Walk", category: "Outdoors", rating: 4.8, time: "09:00–21:00", address: "Carl Skottsbergs gata 22A", lat: 57.6830, lng: 11.9500, description: "One of the larger botanical gardens in Europe. Explore the rock garden, the rhododendron valley, and the Japanese glade.", company: "Botaniska", companyEmail: "info@botaniska.se", price: 30, ticketsRemaining: 500, availableUntil: "2026-12-31", status: "active", image: "/images/botanical-garden.jpg" },
 
   // --- Chalmers (Demo Provider) ---
-  { id: 21, name: "Dragons' Den Pitch Night", category: "Networking", rating: 4.9, time: "18:00–21:00", address: "Chalmers Lindholmen, Hypotesgatan, 417 56 Göteborg", lat: 57.7089, lng: 11.9386, description: "pitch your idea, get money!", company: "Demo Provider", companyEmail: "mail@chalmers.com", price: 0, ticketsRemaining: 50, availableUntil: "2026-05-31", status: "active", image: "/images/dragons-den.jpg" },
+  { id: 21, name: "Dragons' Den Pitch Night", category: "Networking", rating: 4.9, time: "18:00–21:00", address: "Chalmers Lindholmen, Hörselgången 4, 417 56 Göteborg", lat: 57.7075, lng: 11.9380, description: "pitch your idea, get money!", company: "Demo Provider", companyEmail: "mail@chalmers.com", price: 0, ticketsRemaining: 50, availableUntil: "2026-05-31", status: "active", image: "/images/dragons-den.jpg" },
 ];
 
 export const CATEGORY_COLORS: Record<string, string> = {
