@@ -5,6 +5,26 @@ import { Ticket } from '@/contexts/TicketStoreContext';
 const USERS_KEY = 'dooble_demo_users';
 const ACTIVITIES_KEY = 'dooble_demo_activities';
 const TICKETS_KEY = 'dooble_demo_tickets';
+const SEED_VERSION_KEY = 'dooble_seed_version';
+
+// Bump this string any time you update seed data.
+// Anyone with an older version in localStorage will have their data wiped and reseeded automatically.
+const CURRENT_SEED_VERSION = '2026-03-20-v3';
+
+function ensureFreshSeed() {
+    const stored = localStorage.getItem(SEED_VERSION_KEY);
+    if (stored !== CURRENT_SEED_VERSION) {
+        // Clear ALL mock storage so the init functions below start fresh
+        localStorage.removeItem(USERS_KEY);
+        localStorage.removeItem(ACTIVITIES_KEY);
+        localStorage.removeItem(TICKETS_KEY);
+        localStorage.setItem(SEED_VERSION_KEY, CURRENT_SEED_VERSION);
+    }
+}
+
+// Run seed check immediately when this module is loaded
+ensureFreshSeed();
+
 
 // Seed demo users
 const initUsers = () => {
