@@ -16,6 +16,67 @@ const initUsers = () => {
     return defaultUsers;
 };
 
+// Seed demo tickets for funny@email.com (userId:'1')
+const SEED_TICKETS: Ticket[] = [
+    // Past – museum visit (id '7' = Röhsska Museum, availableUntil 2025-12-31 → past)
+    {
+        ticketId: 'demo-ticket-001',
+        userId: '1',
+        activityId: '7',
+        activityTitle: 'Röhsska Museum of Design',
+        companyName: 'Röhsska Museet',
+        purchasedAt: '2025-11-15T10:00:00.000Z',
+        quantity: 2,
+        totalPaid: 120,
+        qrCodeData: 'QR-DEMO001MUSEUM',
+        status: 'Used',
+    },
+    // Past – seafood brunch (id '14' = West Coast Seafood Brunch, availableUntil 2025-10-31 → past)
+    {
+        ticketId: 'demo-ticket-002',
+        userId: '1',
+        activityId: '14',
+        activityTitle: 'West Coast Seafood Brunch',
+        companyName: 'Kajutan GBG',
+        purchasedAt: '2025-10-01T09:00:00.000Z',
+        quantity: 1,
+        totalPaid: 395,
+        qrCodeData: 'QR-DEMO002SEAFOOD',
+        status: 'Used',
+    },
+    // Past – outdoor yoga (id '16' = Morning Yoga by the Sea, availableUntil 2025-09-30 → past)
+    {
+        ticketId: 'demo-ticket-003',
+        userId: '1',
+        activityId: '16',
+        activityTitle: 'Morning Yoga by the Sea',
+        companyName: 'Yoga Gothenburg',
+        purchasedAt: '2025-09-10T07:30:00.000Z',
+        quantity: 1,
+        totalPaid: 0,
+        qrCodeData: 'QR-DEMO003YOGA',
+        status: 'Used',
+    },
+    // Upcoming – Liseberg Amusement Park on 2026-09-30
+    {
+        ticketId: 'demo-ticket-004',
+        userId: '1',
+        activityId: '1',
+        activityTitle: 'Liseberg Amusement Park',
+        companyName: 'Liseberg AB',
+        purchasedAt: '2026-02-14T12:00:00.000Z',
+        quantity: 2,
+        totalPaid: 790,
+        qrCodeData: 'QR-DEMO004LISEBERG',
+        status: 'Valid',
+    },
+];
+
+const initTickets = (): Ticket[] => {
+    localStorage.setItem(TICKETS_KEY, JSON.stringify(SEED_TICKETS));
+    return SEED_TICKETS;
+};
+
 // Demo mock backend
 export class MockBackend {
     static get users(): User[] {
@@ -39,7 +100,8 @@ export class MockBackend {
 
     static get tickets(): Ticket[] {
         const data = localStorage.getItem(TICKETS_KEY);
-        return data ? JSON.parse(data) : [];
+        if (!data) return initTickets();
+        return JSON.parse(data);
     }
 
     static set tickets(tix: Ticket[]) {

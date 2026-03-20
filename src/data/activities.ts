@@ -15,6 +15,12 @@ export interface Activity {
   availableUntil: string;
   status: "active" | "inactive";
   image?: string;
+  source?: "company" | "community";
+  ownerUserId?: string;
+  lastMinute?: boolean;
+  startsAt?: string;
+  isActive?: boolean;
+  ratingCount?: number;
 }
 
 export const CATEGORIES = [
@@ -28,6 +34,7 @@ export const CATEGORIES = [
   "Workshop",
   "Tour",
   "Networking",
+  "Market",
 ] as const;
 
 export const SEED_ACTIVITIES: Activity[] = [
@@ -97,6 +104,9 @@ export const SEED_ACTIVITIES: Activity[] = [
   { id: 33, name: "Dragons' Den Pitch Night", category: "Networking", rating: 4.9, time: "18:00–21:00", address: "Chalmers Lindholmen, Hörselgången 4, 417 56 Göteborg", lat: 57.7075, lng: 11.9380, description: "pitch your idea, get money!", company: "Demo Provider", companyEmail: "mail@chalmers.com", price: 0, ticketsRemaining: (Math.random() < 0.5 ? 2 : 5), availableUntil: "2026-04-01T21:00:00", startsAt: "2026-04-01T18:00:00", status: "active", image: "/images/dragons-den.jpg", lastMinute: true },
   { id: 34, name: "Dragons' Den Pitch Night", category: "Networking", rating: 4.9, time: "18:00–21:00", address: "Chalmers Lindholmen, Hörselgången 4, 417 56 Göteborg", lat: 57.7075, lng: 11.9380, description: "pitch your idea, get money!", company: "Demo Provider", companyEmail: "mail@chalmers.com", price: 0, ticketsRemaining: (Math.random() < 0.5 ? 2 : 5), availableUntil: "2026-04-02T21:00:00", startsAt: "2026-04-02T18:00:00", status: "active", image: "/images/dragons-den.jpg", lastMinute: true },
 
+  // --- Visitor Community Activity (funny@email.com) ---
+  { id: 35, name: "Yard Sale", category: "Market", rating: 4.2, time: "09:00–14:00", address: "Majorna, Göteborg", lat: 57.6978, lng: 11.9270, description: "Selling clothes, home decor, books, and small furniture. Come find a treasure!", company: "Community", companyEmail: "funny@email.com", price: 0, ticketsRemaining: 999, availableUntil: "2026-04-18", status: "active", image: "/images/yard-sale.jpg", source: "community", ownerUserId: "1", isActive: true, ratingCount: 3, lastMinute: false },
+
 ];
 
 export const CATEGORY_COLORS: Record<string, string> = {
@@ -110,4 +120,5 @@ export const CATEGORY_COLORS: Record<string, string> = {
   Workshop: "bg-cyan-500/20 text-cyan-300",
   Tour: "bg-teal-500/20 text-teal-300",
   Networking: "bg-blue-600/20 text-blue-400",
+  Market: "bg-yellow-500/20 text-yellow-600",
 };
