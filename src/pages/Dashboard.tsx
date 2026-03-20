@@ -3,13 +3,30 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useActivityStore, isExpired } from "@/contexts/ActivityStoreContext";
 import { CATEGORY_COLORS } from "@/data/activities";
-import { LogOut, Plus, Pencil, ToggleLeft, ToggleRight, ImageIcon } from "lucide-react";
+import { LogOut, Plus, Pencil, ToggleLeft, ToggleRight, ImageIcon, BarChart3, Star, Ticket, Banknote } from "lucide-react";
 import { getImageUrl } from "@/lib/utils";
+
+// Stats for each past provider event (keyed by activity id)
+const PAST_STATS: Record<number, { tickets: number; revenue: number }> = {
+  910: { tickets: 42, revenue: 3780 },
+  911: { tickets: 68, revenue: 8160 },
+  912: { tickets: 55, revenue: 5500 },
+};
 
 const DashboardPage = () => {
   const { user, logout } = useAuth();
-  const { getCompanyActivities, toggleStatus } = useActivityStore();
+  const { activities: allActivities, getCompanyActivities, toggleStatus } = useActivityStore();
   const activities = getCompanyActivities(user?.email || "");
+
+  // Past activities: inactive, owned by this provider, have a stats entry
+  const pastActivities = allActivities.filter(
+    (a: any) =>
+      a.companyEmail === user?.email &&
+      a.status === "inactive" &&
+      PAST_STATS[a.id as number]
+  );
+  const totalTickets = pastActivities.reduce((s: number, a: any) => s + (PAST_STATS[a.id as number]?.tickets ?? 0), 0);
+  const totalRevenue = pastActivities.reduce((s: number, a: any) => s + (PAST_STATS[a.id as number]?.revenue ?? 0), 0);
 
   const getStatusInfo = (activity: { status: string; availableUntil: string; ticketsRemaining: number }) => {
     if (isExpired(activity as any)) return { label: "Expired", className: "bg-muted text-muted-foreground" };
@@ -113,6 +130,58 @@ const DashboardPage = () => {
                   </div>
                 );
               })}
+            </div>
+          )}
+
+          {/* ── Activity Insights ── */}
+          {pastActivities.length > 0 && (
+            <div className="mt-10">
+              <div className="flex items-center gap-2 mb-4">
+                <BarChart3 className="h-5 w-5 text-primary" />
+                <h2 className="text-lg font-bold text-foreground">Activity Insights</h2>
+              </div>
+
+              <div className="rounded-xl border border-border bg-card overflow-hidden shadow-card">
+                {/* Column headers */}
+                <div className="grid grid-cols-4 gap-4 px-5 py-2.5 bg-muted/40 border-b border-border text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                  <span>Activity</span>
+                  <span className="text-center">Tickets sold</span>
+                  <span className="text-center">Revenue</span>
+                  <span className="text-center">Rating</span>
+                </div>
+
+                {pastActivities.map((a: any) => {
+                  const stats = PAST_STATS[a.id as number];
+                  return (
+                    <div key={a.id} className="grid grid-cols-4 gap-4 px-5 py-4 border-b border-border/60 last:border-0 hover:bg-muted/20 transition-colors">
+                      <div className="min-w-0">
+                        <p className="font-medium text-sm text-foreground truncate">{a.name}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{new Date(a.availableUntil).toLocaleDateString("en-SE")}</p>
+                      </div>
+                      <div className="flex items-center justify-center gap-1.5 text-sm font-semibold text-foreground">
+                        <Ticket className="h-3.5 w-3.5 text-muted-foreground" />
+                        {stats.tickets}
+                      </div>
+                      <div className="flex items-center justify-center gap-1.5 text-sm font-semibold text-foreground">
+                        <Banknote className="h-3.5 w-3.5 text-muted-foreground" />
+                        {stats.revenue.toLocaleString("sv-SE")} kr
+                      </div>
+                      <div className="flex items-center justify-center gap-1 text-sm font-semibold text-amber-500">
+                        <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                        {a.rating?.toFixed(1)}
+                      </div>
+                    </div>
+                  );
+                })}
+
+                {/* Totals row */}
+                <div className="grid grid-cols-4 gap-4 px-5 py-3.5 bg-primary/5 border-t border-primary/10">
+                  <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Total</span>
+                  <span className="text-center text-sm font-bold text-foreground">{totalTickets}</span>
+                  <span className="text-center text-sm font-bold text-foreground">{totalRevenue.toLocaleString("sv-SE")} kr</span>
+                  <span></span>
+                </div>
+              </div>
             </div>
           )}
         </div>
