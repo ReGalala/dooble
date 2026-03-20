@@ -198,7 +198,7 @@ function MyCommunityActivities() {
           {myActivities.map(activity => (
             <div key={activity.id} className="rounded-xl border border-border bg-card p-4">
               <div className="flex items-start justify-between gap-4">
-                <div>
+                <Link to={`/activity/${activity.id}`} className="flex-1 min-w-0 hover:opacity-80 transition-opacity">
                   <h3 className="font-semibold text-foreground">{activity.name}</h3>
                   <div className="flex items-center gap-3 text-xs text-muted-foreground mt-1">
                     <span className={`flex items-center gap-1 ${activity.isActive ? "text-green-600 font-medium" : "text-destructive"}`}>
@@ -209,7 +209,7 @@ function MyCommunityActivities() {
                     <span>•</span>
                     <span>{activity.ticketsRemaining} reserved</span>
                   </div>
-                </div>
+                </Link>
                 <Button variant="outline" size="sm" onClick={() => toggleStatus(activity.id)}>
                   {activity.isActive ? "Hide" : "Show"}
                 </Button>
