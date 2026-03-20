@@ -37,6 +37,7 @@ There are two pre-made accounts you can use:
 2. You'll land on the provider dashboard
 3. Check that **Dragons' Den Pitch Night** is listed there
 4. Click into an activity to see how the detail and management view looks
+5. Scroll down to see **Activity Insights** — stats from previous events (tickets sold, revenue, ratings)
 
 ---
 
