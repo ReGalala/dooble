@@ -26,17 +26,24 @@ const Account = () => {
   const { activities } = useActivityStore();
 
   const ticketsWithDate = tickets.map(t => {
-    const activity = activities.find(a => a.id === t.activityId);
+    // Use String() coercion: seed activities have numeric IDs, ticket activityIds are strings
+    const activity = activities.find(a => String(a.id) === String(t.activityId));
+    // Use the activity's availableUntil as the "event date" when available;
+    // only fall back to purchasedAt if we genuinely cannot find the activity
+    const activityDate = activity
+      ? new Date(activity.availableUntil)
+      : new Date(t.purchasedAt);
     return {
       ...t,
-      activityDate: activity ? new Date(activity.availableUntil) : new Date(t.purchasedAt), // Fallback
+      activityDate,
       description: activity?.description,
       activityImage: activity?.image
     };
   });
 
-  const upcoming = ticketsWithDate.filter(t => t.activityDate >= new Date());
-  const past = ticketsWithDate.filter(t => t.activityDate < new Date());
+  const now2 = new Date();
+  const upcoming = ticketsWithDate.filter(t => t.activityDate >= now2);
+  const past = ticketsWithDate.filter(t => t.activityDate < now2);
 
   return (
     <div className="flex min-h-screen flex-col bg-background">

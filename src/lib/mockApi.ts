@@ -18,12 +18,12 @@ const initUsers = () => {
 
 // Seed demo tickets for funny@email.com (userId:'1')
 const SEED_TICKETS: Ticket[] = [
-    // Past – museum visit (id '7' = Röhsska Museum, availableUntil 2025-12-31 → past)
+    // Past – museum visit → archived activity 901, availableUntil 2025-11-30 (past)
     {
         ticketId: 'demo-ticket-001',
         userId: '1',
-        activityId: '7',
-        activityTitle: 'Röhsska Museum of Design',
+        activityId: '901',
+        activityTitle: 'Röhsska Museum Visit',
         companyName: 'Röhsska Museet',
         purchasedAt: '2025-11-15T10:00:00.000Z',
         quantity: 2,
@@ -31,11 +31,11 @@ const SEED_TICKETS: Ticket[] = [
         qrCodeData: 'QR-DEMO001MUSEUM',
         status: 'Used',
     },
-    // Past – seafood brunch (id '14' = West Coast Seafood Brunch, availableUntil 2025-10-31 → past)
+    // Past – seafood brunch → archived activity 902, availableUntil 2025-10-31 (past)
     {
         ticketId: 'demo-ticket-002',
         userId: '1',
-        activityId: '14',
+        activityId: '902',
         activityTitle: 'West Coast Seafood Brunch',
         companyName: 'Kajutan GBG',
         purchasedAt: '2025-10-01T09:00:00.000Z',
@@ -44,11 +44,11 @@ const SEED_TICKETS: Ticket[] = [
         qrCodeData: 'QR-DEMO002SEAFOOD',
         status: 'Used',
     },
-    // Past – outdoor yoga (id '16' = Morning Yoga by the Sea, availableUntil 2025-09-30 → past)
+    // Past – yoga → archived activity 903, availableUntil 2025-09-30 (past)
     {
         ticketId: 'demo-ticket-003',
         userId: '1',
-        activityId: '16',
+        activityId: '903',
         activityTitle: 'Morning Yoga by the Sea',
         companyName: 'Yoga Gothenburg',
         purchasedAt: '2025-09-10T07:30:00.000Z',
@@ -57,7 +57,7 @@ const SEED_TICKETS: Ticket[] = [
         qrCodeData: 'QR-DEMO003YOGA',
         status: 'Used',
     },
-    // Upcoming – Liseberg Amusement Park on 2026-09-30
+    // Upcoming – Liseberg Amusement Park → id '1', availableUntil 2026-09-30 (future)
     {
         ticketId: 'demo-ticket-004',
         userId: '1',

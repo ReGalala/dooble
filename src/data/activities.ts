@@ -107,6 +107,12 @@ export const SEED_ACTIVITIES: Activity[] = [
   // --- Visitor Community Activity (funny@email.com) ---
   { id: 35, name: "Yard Sale", category: "Market", rating: 4.2, time: "09:00–14:00", address: "Majorna, Göteborg", lat: 57.6978, lng: 11.9270, description: "Selling clothes, home decor, books, and small furniture. Come find a treasure!", company: "Community", companyEmail: "funny@email.com", price: 0, ticketsRemaining: 999, availableUntil: "2026-04-18", status: "active", image: "/images/yard-sale.jpg", source: "community", ownerUserId: "1", isActive: true, ratingCount: 3, lastMinute: false },
 
+  // --- Archived past activities (backing demo ticket history for funny@email.com) ---
+  // These are inactive (won't show on map) but give the ticket lookup a real past date.
+  { id: 901, name: "Röhsska Museum Visit", category: "Museum", rating: 4.3, time: "12:00–17:00", address: "Vasagatan 37–39", lat: 57.6990, lng: 11.9700, description: "A visit to Sweden's design museum — ceramics, fashion and craft through the ages.", company: "Röhsska Museet", companyEmail: "info@rohsska.se", price: 60, ticketsRemaining: 0, availableUntil: "2025-11-30", status: "inactive", image: "/images/museum.jpg" },
+  { id: 902, name: "West Coast Seafood Brunch", category: "Food", rating: 4.7, time: "11:00–13:00", address: "Feskekôrka, Fisktorget 4", lat: 57.6990, lng: 11.9590, description: "A relaxed Saturday brunch of freshly-caught west coast seafood inside Feskekôrka.", company: "Kajutan GBG", companyEmail: "info@kajutan.se", price: 395, ticketsRemaining: 0, availableUntil: "2025-10-31", status: "inactive", image: "/images/seafood.jpg" },
+  { id: 903, name: "Morning Yoga by the Sea", category: "Fitness", rating: 4.5, time: "07:00–08:00", address: "Saltholmen brygga", lat: 57.6590, lng: 11.8690, description: "A sunrise yoga session on the rocks at Saltholmen — sea breeze, birdsong and a clear sky.", company: "Yoga Gothenburg", companyEmail: "info@yogagbg.se", price: 0, ticketsRemaining: 0, availableUntil: "2025-09-30", status: "inactive", image: "/images/yoga.jpg" },
+
 ];
 
 export const CATEGORY_COLORS: Record<string, string> = {
