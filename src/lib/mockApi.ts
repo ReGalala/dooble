@@ -7,9 +7,7 @@ const ACTIVITIES_KEY = 'dooble_demo_activities';
 const TICKETS_KEY = 'dooble_demo_tickets';
 const SEED_VERSION_KEY = 'dooble_seed_version';
 
-// Bump this string any time you update seed data.
-// Anyone with an older version in localStorage will have their data wiped and reseeded automatically.
-const CURRENT_SEED_VERSION = '2026-03-20-v4';
+const CURRENT_SEED_VERSION = '2026-03-21-v5';
 
 function ensureFreshSeed() {
     const stored = localStorage.getItem(SEED_VERSION_KEY);
